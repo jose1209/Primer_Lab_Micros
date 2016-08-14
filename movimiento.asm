@@ -124,7 +124,7 @@ div esi         ; make it from 0 to 9
 mov edi,0
 cmp edx,edi
 jz iz
-jnz iz;der
+jnz der
 ret
 
 iz:
@@ -157,12 +157,109 @@ ret
 
 y1_0:
 mov qword [y1], 0x30 
-jmp direccion
+jmp loop_2
 
 y1_1:
 mov qword [y1], 0x31 
+jmp loop_2
+
+loop_2:
+
+rdtsc
+xor eax, edx
+mov ebx, eax        ; the seed is in ebx
+mov esi, 10
+mov ecx, 50
+add ebx, $811C9DC5  ; prime 1
+imul ebx, $01000193  ; prime 2
+mov eax, ebx
+xor edx, edx
+div esi         ; make it from 0 to 9
+jmp y2_
+
+y2_:
+mov edi,0
+cmp edx,edi
+je y2_0
+
+mov edi,1
+cmp edx,edi
+je y2_1
+
+mov edi,2
+cmp edx,edi
+je y2_2
+
+mov edi,3
+cmp edx,edi
+je y2_3
+
+mov edi,4
+cmp edx,edi
+je y2_4
+
+mov edi,5
+cmp edx,edi
+je y2_5
+
+mov edi,6
+cmp edx,edi
+je y2_6
+
+mov edi,7
+cmp edx,edi
+je y2_7
+
+mov edi,8
+cmp edx,edi
+je y2_8
+
+mov edi,9
+cmp edx,edi
+je y2_9
+
+jmp final
+
+
+y2_0:
+mov qword [y2], 0x30 ; y2
 jmp direccion
 
+y2_1:
+mov qword [y2], 0x31 ; y2
+jmp direccion
+
+y2_2:
+mov qword [y2], 0x32 ; y2
+jmp direccion
+
+y2_3:
+mov qword [y2], 0x33 ; y2
+jmp direccion
+
+y2_4:
+mov qword [y2], 0x34 ; y2
+jmp direccion
+
+y2_5:
+mov qword [y2], 0x35 ; y2
+jmp direccion
+
+y2_6:
+mov qword [y2], 0x36 ; y2
+jmp direccion
+
+y2_7:
+mov qword [y2], 0x37 ; y2
+jmp direccion
+
+y2_8:
+mov qword [y2], 0x38 ; y2
+jmp direccion
+
+y2_9:
+mov qword [y2], 0x39 ; y2
+jmp direccion
 ;-----------------------------------------------------------------------------
 
 
