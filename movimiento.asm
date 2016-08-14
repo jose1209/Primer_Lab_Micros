@@ -27,6 +27,9 @@ len1 equ $-bola1
 section .text
 global _start
 
+
+
+
 ;---------------------------Principal-----------------------------------------
 _start:
 mov qword [x1], 0x34 ; x1
@@ -40,7 +43,12 @@ jmp final
 ;-----------------------------------------------------------------------------
 
 
-;---------------------------Dibujar elemento----------------------------------
+
+
+
+
+
+;---------------------------dibujar elemento----------------------------------
 posicion_cambio:
 mov r8, 0x1b;0x1b
 mov [bola1 + 0x00], r8
@@ -67,6 +75,12 @@ ret
 ;-----------------------------------------------------------------------------
 
 
+
+
+
+
+
+;---------------------------direccion-----------------------------------------
 direccion:
 mov r15, 0x11
 cmp qword [d0], 0x11 ; 
@@ -85,8 +99,16 @@ cmp qword [d0], 0x14 ;
 je abajo_i
 
 jmp final
+;-----------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+;---------------------------disparo aleatorio---------------------------------
 disparo_inicio:
 
 rdtsc
@@ -102,13 +124,47 @@ div esi         ; make it from 0 to 9
 mov edi,0
 cmp edx,edi
 jz iz
-mov qword [d0], 0x12
-jmp direccion
+jnz iz;der
 ret
 
 iz:
 mov qword [d0], 0x11
+call loop_1
 jmp direccion
+
+der:
+mov qword [d0], 0x12
+call loop_1
+jmp direccion
+
+
+loop_1:
+rdtsc
+xor eax, edx
+mov ebx, eax        ; the seed is in ebx
+mov esi, 2
+mov ecx, 50
+add ebx, $811C9DC5  ; prime 1
+imul ebx, $01000193  ; prime 2
+mov eax, ebx
+xor edx, edx
+div esi         ; make it from 0 to 9
+mov edi,0
+cmp edx,edi
+jz y1_0
+jnz y1_1
+ret
+
+y1_0:
+mov qword [y1], 0x30 
+jmp direccion
+
+y1_1:
+mov qword [y1], 0x31 
+jmp direccion
+
+;-----------------------------------------------------------------------------
+
 
 
 
@@ -177,6 +233,12 @@ mov r10,0x01
 sub qword [y1], r10
 ret
 ;-----------------------------------------------------------------------------
+
+
+
+
+
+
 
 
 ;---------------------------movimiento inferior Derecho-----------------------
@@ -248,6 +310,7 @@ ret
 
 
 
+
 ;---------------------------movimiento inferior izquierdo---------------------
 
 abajo_i: 
@@ -298,6 +361,9 @@ jmp direccion
 
 
 
+
+
+
 ;---------------------------movimiento superior derecho-----------------------
 arriba_d:
 mov qword [d0], 0x12 ;
@@ -343,6 +409,16 @@ call resta3
 call posicion_cambio
 jmp direccion
 ;-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+;---------------------------Rebotes LD, LU, RD, RU----------------------------
 rebotar_LD:
 mov qword [d0], 0x14 ;
 mov r13, 0x39
@@ -426,6 +502,14 @@ mov qword [x2], 0x30 ; x2 lo pone en cero
 call posicion_cambio
 jmp direccion
 
+;-----------------------------------------------------------------------------
+
+
+
+
+
+
+
 ;---------------------------retardo temporal----------------------------------
 delay:
 mov dword [tv_sec], 0
@@ -436,6 +520,9 @@ mov ecx, 0
 int 0x80
 ret
 ;-----------------------------------------------------------------------------
+
+
+
 
 
 
