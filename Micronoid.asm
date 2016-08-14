@@ -202,24 +202,24 @@ _start:
 
 ;-------------------------------Inicio Pintado de los Bloques----------------------------------------
 
-    escribe msg1,len1
-    escribe msg2,len2
-    escribe msg3,len3
-    escribe msg4,len4
-    escribe msg5,len5
-    escribe msg6,len6
-    escribe msg7,len7
-    escribe msg8,len8
-    escribe msg9,len9
-    escribe msg10,len10
-    escribe msg11,len11
-    escribe msg12,len12
-    escribe msg13,len13
-    escribe msg14,len14
     escribe msg15,len15
     escribe msg16,len16
     escribe msg17,len17
     escribe msg18,len18
+    escribe msg19,len19
+    escribe msg20,len20
+    escribe msg21,len21
+    escribe msg22,len22
+    escribe msg23,len23
+    escribe msg24,len24
+    escribe msg25,len25
+    escribe msg26,len26
+    escribe msg27,len27
+    escribe msg28,len28
+    escribe msg29,len29
+    escribe msg30,len30
+    escribe msg31,len31
+    escribe msg32,len32
     mov qword [x1], 0x45
     mov qword [y1], 0x30
 	mov qword [x2], 0x34
@@ -317,16 +317,16 @@ comparacion_9:
 
 
 Llamado_2:
-   escribe msg19,len19
+   escribe msg33,len33
 
 Llamado_3:
-	escribe msg20,len20
+	escribe msg34,len34
 
 Llamado_4:
-	escribe msg21,len21
+	escribe msg35,len35
 	
 Llamado_1:
-    escribe msg22,len22
+    escribe msg36,len36
 
 
 ;-------------------------------Fin del pintado de los bloques---------------------------------------
