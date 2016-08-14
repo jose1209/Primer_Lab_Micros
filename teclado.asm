@@ -86,8 +86,45 @@ call limpiar_pantalla
 ret
 ;-----------------------------------------------------------------------------
 
+;--------------------Lectura del Teclado-----------------------------------
+Escuchar:
+	mov ah,0x06			;Peticion directa de la consola
+	mov dl,0x0ff		;Entrada del teclado
+	int 0x21			;Interrupcion
+	ret 				;Si ZF esta en alto significa que el buffer esta vacio
+;-----------------------------------------------------------------------------
 
-
+;-------------------Entender lo que dice el teclado---------------------------
+Atender:
+	cmp al,75	;Flecha izquierda
+	jnz E2
+	;call moverizquierda
+	;jmp principal
+E2:
+	cmp al,77	;Flecha derecha
+	jnz E3
+	;call Mover derecha
+	;jmp principal
+E3:
+	cmp al,44 	;Precionar X
+	jnz E4	;Seria el principal
+	;call Iniciar_Juego		;Parte en la que el juego comienza
+	;jmp principal
+E4:
+	cmp al,30		;Presionar a
+	jnz E5
+	;call moverizquierda
+	;jmp principal
+E5:
+	cmp al,32	;Presionar D
+	jnz Quit
+	;call Mover derecha
+	;jmp principal
+Quit:
+	cmp al,16
+	;jnz ;principal
+	ret
+;-----------------------------------------------------------------------------
 
 ;---------------------------retardo temporal----------------------------------
 delay:
