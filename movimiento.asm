@@ -1,0 +1,462 @@
+%macro escribe 2
+mov eax, 4
+mov ebx, 1
+mov ecx, %1
+mov edx, %2
+int 0x80
+%endmacro
+
+section .data
+
+timeval:
+    tv_sec  dd 0
+    tv_usec dd 0
+
+x1 dq 0
+x2 dq 0
+y1 dq 0
+y2 dq 0
+d0 dq 0
+
+borra db 0x1b,"[2J"
+len2 equ $-borra
+
+bola1 db 0x1b,"[00;00f","*"
+len1 equ $-bola1
+
+section .text
+global _start
+
+;---------------------------Principal-----------------------------------------
+_start:
+mov qword [x1], 0x34 ; x1
+mov qword [y1], 0x31 ; y1, ahí está totalemente abajo
+mov qword [x2], 0x38 ; x2
+mov qword [y2], 0x39 ; y2
+call limpiar_pantalla
+call posicion_cambio
+call disparo_inicio
+jmp final
+;-----------------------------------------------------------------------------
+
+
+;---------------------------Dibujar elemento----------------------------------
+posicion_cambio:
+mov r8, 0x1b;0x1b
+mov [bola1 + 0x00], r8
+mov r8, 0x5b;[
+mov [bola1 + 0x01], r8
+mov r8, [y1];y1
+mov [bola1 + 0x02], r8
+mov r8, [y2];y2
+mov [bola1 + 0x03], r8
+mov r8, 0x3b;;
+mov [bola1 + 0x04], r8
+mov r8, [x1];x1
+mov [bola1 + 0x05], r8
+mov r8, [x2];x2
+mov [bola1 + 0x06], r8
+mov r8, 0x66;f
+mov [bola1 + 0x07], r8
+mov r8, 0x2a;*
+mov [bola1 + 0x08], r8
+escribe bola1, len1
+call delay
+call limpiar_pantalla
+ret
+;-----------------------------------------------------------------------------
+
+
+direccion:
+mov r15, 0x11
+cmp qword [d0], 0x11 ; 
+je arriba_i
+
+mov r15, 0x12
+cmp qword [d0], 0x12 ; 
+je arriba_d
+
+mov r15, 0x13
+cmp qword [d0], 0x13 ; 
+je abajo_d
+
+mov r15, 0x14
+cmp qword [d0], 0x14 ; 
+je abajo_i
+
+jmp final
+
+
+disparo_inicio:
+
+rdtsc
+xor eax, edx
+mov ebx, eax        ; the seed is in ebx
+mov esi, 2
+mov ecx, 50
+add ebx, $811C9DC5  ; prime 1
+imul ebx, $01000193  ; prime 2
+mov eax, ebx
+xor edx, edx
+div esi         ; make it from 0 to 9
+mov edi,0
+cmp edx,edi
+jz iz
+mov qword [d0], 0x12
+jmp direccion
+ret
+
+iz:
+mov qword [d0], 0x11
+jmp direccion
+
+
+
+
+
+;---------------------------movimiento superior izquierdo---------------------
+arriba_i: 
+mov qword [d0], 0x11 ; 
+call buffer
+
+call posicion_cambio
+jmp arriba_i
+ret
+
+buffer:
+mov r13, 0x30
+cmp qword [x2],r13
+je cero1
+call resta1
+mov r13, 0x30
+cmp qword [y2],r13
+je cero2
+call resta3
+ret
+
+cero1:
+mov r13, 0x30
+cmp qword [x1],r13
+je rebotar_RU
+call resta2
+mov qword [x2], 0x39 ; x1
+jmp buff_1
+
+cero2:
+mov r13, 0x30
+cmp qword [y1],r13
+je rebotar_LD
+call resta4
+mov qword [y2], 0x39 ; x1
+call posicion_cambio
+jmp direccion
+
+buff_1:
+mov r13, 0x30
+cmp qword [y2],r13
+je cero2
+call resta3
+call posicion_cambio
+jmp direccion
+
+
+resta1:
+mov r10,0x01
+sub qword [x2], r10
+ret
+resta2:
+mov r10,0x01
+sub qword [x1], r10
+ret
+resta3:
+mov r10,0x01
+sub qword [y2], r10
+ret
+resta4:
+mov r10,0x01
+sub qword [y1], r10
+ret
+;-----------------------------------------------------------------------------
+
+
+;---------------------------movimiento inferior Derecho-----------------------
+abajo_d: 
+mov qword [d0], 0x13 ;
+call buffer2
+
+call posicion_cambio
+jmp abajo_d 
+ret
+
+buffer2:
+mov r13, 0x39
+cmp qword [x2],r13
+je cero1_
+call suma1; es el caso en el que x2 no es 9
+mov r13, 0x39
+cmp qword [y2],r13; es el caso en el que x2 no es 9
+je cero2_
+call suma3
+ret
+
+cero1_:
+mov r13, 0x37
+cmp qword [x1],r13
+je rebotar_LD
+call suma2; caso en que no se esta en el borde
+mov qword [x2], 0x30 ; x2 lo pone en cero
+jmp buff_2
+
+cero2_:
+mov r13, 0x31
+cmp qword [y1],r13
+je rebotar_RU
+call suma4
+mov qword [y2], 0x30 ; x1
+call posicion_cambio
+
+jmp direccion
+
+buff_2:
+mov r13, 0x39
+cmp qword [y2],r13
+je cero2_
+call suma3; suma y2 en una unidad
+call posicion_cambio
+jmp direccion
+
+
+suma1:
+mov r10,0x01
+add qword [x2], r10
+ret
+suma2:
+mov r10,0x01
+add qword [x1], r10
+ret
+suma3:
+mov r10,0x01
+add qword [y2], r10
+ret
+suma4:
+mov r10,0x01
+add qword [y1], r10
+ret
+;-----------------------------------------------------------------------------
+
+
+
+
+
+;---------------------------movimiento inferior izquierdo---------------------
+
+abajo_i: 
+mov qword [d0], 0x14 ;
+call buffer3
+
+call posicion_cambio
+jmp abajo_i 
+ret
+
+buffer3:
+mov r13, 0x30
+cmp qword [x2],r13
+je cero_1
+call resta1; es el caso en el que x2 no es 0
+mov r13, 0x39
+cmp qword [y2],r13; es el caso en el que x2 no es 9
+je cero22_
+call suma3
+ret
+
+cero_1:
+mov r13, 0x30
+cmp qword [x1],r13
+je rebotar_RD
+call resta2
+mov qword [x2], 0x39 ; x1
+jmp buff_22
+
+cero22_:
+mov r13, 0x31
+cmp qword [y1],r13
+je rebotar_LU
+call suma4
+mov qword [y2], 0x30 ; x1
+call posicion_cambio
+jmp direccion
+
+buff_22:
+mov r13, 0x39
+cmp qword [y2],r13
+je cero22_
+call suma3; suma y2 en una unidad
+call posicion_cambio
+jmp direccion
+;-----------------------------------------------------------------------------
+
+
+
+
+;---------------------------movimiento superior derecho-----------------------
+arriba_d:
+mov qword [d0], 0x12 ;
+call buffer4
+
+call posicion_cambio
+jmp arriba_d
+ret
+
+buffer4:
+mov r13, 0x39
+cmp qword [x2],r13
+je cero_2
+call suma1; es el caso en el que x2 no es 9
+mov r13, 0x30
+cmp qword [y2],r13
+je cero22
+call resta3
+ret
+
+cero_2:
+mov r13, 0x37
+cmp qword [x1],r13
+je rebotar_LU
+call suma2; caso en que no se esta en el borde
+mov qword [x2], 0x30 ; x2 lo pone en cero
+jmp buff_11
+
+cero22:
+mov r13, 0x30
+cmp qword [y1],r13
+je rebotar_RD
+call resta4
+mov qword [y2], 0x39 ; x1
+call posicion_cambio
+jmp direccion
+
+buff_11:
+mov r13, 0x30
+cmp qword [y2],r13
+je cero22
+call resta3
+call posicion_cambio
+jmp direccion
+;-----------------------------------------------------------------------------
+rebotar_LD:
+mov qword [d0], 0x14 ;
+mov r13, 0x39
+cmp qword [y2],r13
+je cero22_
+call suma3
+mov r13, 0x30
+cmp qword [x2],r13
+je h1
+call resta1; es el caso en el que x2 no es 0
+jmp direccion
+
+rebotar_LU:
+mov qword [d0], 0x11 ;
+mov r13, 0x30
+cmp qword [x2],r13
+je cero_1
+call resta1
+mov r13, 0x30
+cmp qword [y2],r13
+je h0
+call resta3
+jmp direccion
+
+rebotar_RD:
+mov qword [d0], 0x13
+mov r13, 0x39
+cmp qword [x2],r13
+je cero_2
+call suma1
+cmp qword [y2], 0x39 ; x1
+je h2
+call suma3
+jmp direccion
+
+rebotar_RU:
+mov qword [d0], 0x12 
+mov r13, 0x30
+cmp qword [y2],r13
+je cero2
+call resta3
+mov r13, 0x39
+cmp qword [x2],r13
+je h3
+call suma1; es el caso en el que x2 no es 9
+jmp direccion
+
+h0:
+mov r13, 0x30
+cmp qword [y1],r13
+je final
+call resta4
+mov qword [y2], 0x39 ; x1
+call posicion_cambio
+jmp direccion
+
+h1:
+mov r13, 0x30
+cmp qword [x1],r13
+je final
+call resta2
+mov qword [x2], 0x39 ; x1
+call posicion_cambio
+jmp direccion
+
+h2:
+mov r13, 0x31
+cmp qword [y1],r13
+je final
+call suma4
+mov qword [y2], 0x30 ; x1
+call posicion_cambio
+jmp direccion
+
+h3:
+mov r13, 0x37
+cmp qword [x1],r13
+je final
+call suma2; caso en que no se esta en el borde
+mov qword [x2], 0x30 ; x2 lo pone en cero
+call posicion_cambio
+jmp direccion
+
+;---------------------------retardo temporal----------------------------------
+delay:
+mov dword [tv_sec], 0
+mov dword [tv_usec], 99000000
+mov eax, 162
+mov ebx, timeval
+mov ecx, 0
+int 0x80
+ret
+;-----------------------------------------------------------------------------
+
+
+
+;---------------------------limpia pantalla-----------------------------------
+limpiar_pantalla:
+;escribe borra, len2
+mov eax, 4
+mov ebx, 1
+mov ecx, borra
+mov edx, len2
+int 0x80
+ret
+;-----------------------------------------------------------------------------
+
+
+
+;---------------------------limpia registros----------------------------------
+final:
+mov eax, 1
+;se carga la llamada 60d (sys_exit) en rax
+mov ebx,0
+;en rdi se carga un 0
+int 0x80
+;-----------------------------------------------------------------------------
