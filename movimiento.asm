@@ -17,6 +17,7 @@ x2 dq 0
 y1 dq 0
 y2 dq 0
 d0 dq 0
+v  dq 3
 
 borra db 0x1b,"[2J"
 len2 equ $-borra
@@ -83,19 +84,19 @@ ret
 ;---------------------------direccion-----------------------------------------
 direccion:
 mov r15, 0x11
-cmp qword [d0], 0x11 ; 
+cmp qword [d0], r15 ; 
 je arriba_i
 
 mov r15, 0x12
-cmp qword [d0], 0x12 ; 
+cmp qword [d0], r15 ; 
 je arriba_d
 
 mov r15, 0x13
-cmp qword [d0], 0x13 ; 
+cmp qword [d0], r15 ; 
 je abajo_d
 
 mov r15, 0x14
-cmp qword [d0], 0x14 ; 
+cmp qword [d0], r15 ; 
 je abajo_i
 
 jmp final
@@ -600,6 +601,79 @@ call posicion_cambio
 jmp direccion
 
 ;-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+;---------------------------Rebotes bloques y barrera-------------------------
+
+R_bloque_D: ;costado derecho del bloque
+mov r12, 0x11;izquierda arriba
+cmp qword [d0], r12 ; 
+je rebotar_RU
+
+mov r12, 0x14;izquierda abajo
+cmp qword [d0], r12 ; 
+je rebotar_RD
+
+jmp final
+
+R_bloque_I: ;costado izquierdo del bloque
+mov r12, 0x12;derecha arriba
+cmp qword [d0], r12 ; 
+je rebotar_LU
+
+mov r12, 0x13;derecha abajo
+cmp qword [d0], r12 ; 
+je rebotar_LD
+
+jmp final
+
+R_bloque_Arriba: ;costado superior del bloque
+mov r12, 0x13;derecha abajo
+cmp qword [d0], r12 ; 
+je rebotar_RU
+
+mov r12, 0x14;izquierda abajo
+cmp qword [d0], r12 ; 
+je rebotar_LU
+
+jmp final
+
+R_bloque_Abajo: ;costado superior del bloque
+mov r12, 0x12;derecha arriba
+cmp qword [d0], r12 ; 
+je rebotar_RD
+
+mov r12, 0x11;izquierda arriba
+cmp qword [d0], r12 ; 
+je rebotar_LD
+
+jmp final
+
+;-----------------------------------------------------------------------------
+
+
+
+
+
+
+;---------------------------eliminar vida--------------------------------------
+resta_vidas:
+mov r9,1
+sub qword [v],r9
+mov r9,0
+cmp qword [v], r9;
+je perdio_juego
+
+jmp _start
+;-----------------------------------------------------------------------------
+perdio_juego
+jmp final 
 
 
 
