@@ -351,7 +351,7 @@ ret
 buffer2:
 mov r13, 0x39
 cmp qword [x2],r13
-je cero1_
+je cero1_;si x2 es 9
 call suma1; es el caso en el que x2 no es 9
 mov r13, 0x39
 cmp qword [y2],r13; es el caso en el que x2 no es 9
@@ -359,18 +359,18 @@ je cero2_
 call suma3
 ret
 
-cero1_:
+cero1_:;para x2 9
 mov r13, 0x37
-cmp qword [x1],r13
-je rebotar_LD
+cmp qword [x1],r13;pregunto si x1 es 7
+je rebotar_LD; si esto pasa es que estoy en una posicion de y cualquiera excepto 19, y debo rebotar en la pared
 call suma2; caso en que no se esta en el borde
 mov qword [x2], 0x30 ; x2 lo pone en cero
-jmp buff_2
+jmp buff_2;actualizo y
 
-cero2_:
+cero2_:;si y2 es 9, esto es el piso o no
 mov r13, 0x31
-cmp qword [y1],r13
-je rebotar_RU
+cmp qword [y1],r13;pregunto si estoy en el piso
+je rebotar_RU;preguntar si esta la barra acá
 call suma4
 mov qword [y2], 0x30 ; x1
 call posicion_cambio
@@ -379,7 +379,7 @@ jmp direccion
 
 buff_2:
 mov r13, 0x39
-cmp qword [y2],r13
+cmp qword [y2],r13;pregunta si y2 es 9
 je cero2_
 call suma3; suma y2 en una unidad
 call posicion_cambio
@@ -672,7 +672,7 @@ je perdio_juego
 
 jmp _start
 ;-----------------------------------------------------------------------------
-perdio_juego
+perdio_juego:
 jmp final 
 
 
