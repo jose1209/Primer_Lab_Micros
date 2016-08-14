@@ -518,27 +518,27 @@ jmp direccion
 
 ;---------------------------Rebotes LD, LU, RD, RU----------------------------
 rebotar_LD:
-mov qword [d0], 0x14 ;
+mov qword [d0], 0x14 ;movimiento abajo a la izquierda
 mov r13, 0x39
-cmp qword [y2],r13
-je cero22_
-call suma3
+cmp qword [y2],r13; pregunta si y2 es 9, por si hay que cambiar la unidad
+je cero22_; en caso de que y2 sea nueve se pone a y2 en cero y se le resta a x
+call suma3; le sumo una unidad a y2 ya que se que no es 9
 mov r13, 0x30
-cmp qword [x2],r13
-je h1
+cmp qword [x2],r13; pregunto si x2 vale cero, porque a el le resto
+je h1; si x2 es cero brinco a h1 para decrementar la decena y poner a x2 en 9
 call resta1; es el caso en el que x2 no es 0
 jmp direccion
 
-rebotar_LU:
+rebotar_LU:;movimiento arriba a la izquierda
 mov qword [d0], 0x11 ;
 mov r13, 0x30
-cmp qword [x2],r13
-je cero_1
-call resta1
+cmp qword [x2],r13; pregunta si x2 es 0, por si hay que cambiar la unidad
+je cero_1; en caso de que x2 sea 0 se pone a x2 en 9 y se le resta a y
+call resta1; le resto una unidad a x2 ya que se que no es 0
 mov r13, 0x30
-cmp qword [y2],r13
-je h0
-call resta3
+cmp qword [y2],r13; pregunto si y2 vale cero, porque a el le resto
+je h0; si y2 es cero brinco a h0 para decrementar la decena y poner a y2 en 9
+call resta3; es el caso en el que y2 no es 0
 jmp direccion
 
 rebotar_RD:
@@ -564,19 +564,19 @@ je h3
 call suma1; es el caso en el que x2 no es 9
 jmp direccion
 
-h0:
+h0:; si y2 es cero brinco a h0 para decrementar la decena y poner a y2 en 9
 mov r13, 0x30
-cmp qword [y1],r13
-je final
+cmp qword [y1],r13; pregunto si estoy en una esquina , 0.0
+je rebotar_RD; si estoy en esos ptos me devuelvo en la misma direccion que venia, me voy hacia arriba derecha
 call resta4
 mov qword [y2], 0x39 ; x1
 call posicion_cambio
 jmp direccion
 
-h1:
+h1:; si x2 es cero brinco a h1 para decrementar la decena y poner a x2 en 9
 mov r13, 0x30
-cmp qword [x1],r13
-je final
+cmp qword [x1],r13; pregunto si estoy en una esquina , 0.0, 19
+je rebotar_RU; si estoy en esos ptos me devuelvo en la misma direccion que venia, me voy hacia arriba derecha
 call resta2
 mov qword [x2], 0x39 ; x1
 call posicion_cambio
@@ -585,7 +585,7 @@ jmp direccion
 h2:
 mov r13, 0x31
 cmp qword [y1],r13
-je final
+je rebotar_LU
 call suma4
 mov qword [y2], 0x30 ; x1
 call posicion_cambio
@@ -594,7 +594,7 @@ jmp direccion
 h3:
 mov r13, 0x37
 cmp qword [x1],r13
-je final
+je rebotar_LD
 call suma2; caso en que no se esta en el borde
 mov qword [x2], 0x30 ; x2 lo pone en cero
 call posicion_cambio
