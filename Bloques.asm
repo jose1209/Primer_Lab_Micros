@@ -99,6 +99,13 @@ section .text
 	global _start       ;para el linker
 _start:		            ;marca la entrada
 
+    mov qword [x1], 0x45
+    mov qword [y1], 0x30
+	mov qword [x2], 0x34
+	mov qword [y2], 0x34
+
+Escribir_Bloques:
+
     escribe msg1,len1
     escribe msg2,len2
     escribe msg3,len3
@@ -117,101 +124,320 @@ _start:		            ;marca la entrada
     escribe msg16,len16
     escribe msg17,len17
     escribe msg18,len18
-    mov qword [x1], 0x45
-    mov qword [y1], 0x30
-	mov qword [x2], 0x34
-	mov qword [y2], 0x34
 
-comparacion_1:
+;-------------------------------------------------------- Inicio Comparaciones Iniciales ----------------------------------------------------------------
+
+comparacion1:
 
 	cmp qword [y1],0x30
-	je comparacion_2
+	je comparacion2
 	cmp qword [y1],0x31
-	je comparacion_2
-    limpiar ;Hay que cambiarlo a no haga nada al unirlo
+	je comparacion3
+    jp salir
 
-comparacion_2:
+comparacion2:
 	
+	cmp qword [y2],0x32
+	je comparacion4
+	cmp qword [y2],0x33
+	je comparacion5
 	cmp qword [y2],0x34
-	je comparacion_3
+	je comparacion6
 	cmp qword [y2],0x35
-	je comparacion_4
+	je comparacion4
 	cmp qword [y2],0x36
-	je comparacion_5
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
+	je comparacion5
+	cmp qword [y2],0x37
+	je comparacion6
+	cmp qword [y2],0x38
+	je comparacion4
+	cmp qword [y2],0x39
+	je comparacion5
+	jp salir
 
-comparacion_3:
+comparacion3:
+
+	cmp qword [y2],0x30
+	je comparacion6
+	jp salir
+
+comparacion4:
+
+	cmp qword [x1],0x30
+	je comparacion7
+	cmp qword [x1],0x31
+	je comparacion8
 	cmp qword [x1],0x32
-	je Llamado_1
+	je comparacion9
 	cmp qword [x1],0x33
-	je comparacion_6
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
+	je comparacion10
+	cmp qword [x1],0x34
+	je comparacion11
+	cmp qword [x1],0x35
+	je comparacion12
+	cmp qword [x1],0x36
+	je comparacion13
+	cmp qword [x1],0x37
+	je comparacion14
+	jp salir
+	
+comparacion5:
 
-comparacion_4:
+	cmp qword [x1],0x30
+	je comparacion15
+	cmp qword [x1],0x31
+	je comparacion16
 	cmp qword [x1],0x32
-	je comparacion_7
+	je comparacio17
 	cmp qword [x1],0x33
-	je comparacion_8
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
+	je comparacion18
+	cmp qword [x1],0x34
+	je comparacion19
+	cmp qword [x1],0x35
+	je comparacion20
+	cmp qword [x1],0x36
+	je comparacion21
+	cmp qword [x1],0x37
+	je comparacion22
+	jp salir
 
-comparacion_5:
+
+comparacion6:
+
+	cmp qword [x1],0x30
+	je comparacion23
+	cmp qword [x1],0x31
+	je comparacion24
 	cmp qword [x1],0x32
-	je Llamado_4
+	je comparacion25
 	cmp qword [x1],0x33
-	je comparacion_9
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
+	je comparacion26
+	cmp qword [x1],0x34
+	je comparacion27
+	cmp qword [x1],0x35
+	je comparacion28
+	cmp qword [x1],0x36
+	je comparacion29
+	cmp qword [x1],0x37
+	je comparacion30
+	jp salir
 
-comparacion_6:
+;---------------------------------------------------------- Final Comparaciones Iniciales ---------------------------------------------------------------
+
+
+;---------------------------------------------------------- Inicio Comparaciones Fila 2,5,8 -------------------------------------------------------------
+comparacion7:
+
 	cmp qword [x2],0x30
-	je Llamado_1
+	je salir
 	cmp qword [x2],0x31
-	je Llamado_1
+	je salir
 	cmp qword [x2],0x32
-	je Llamado_1
+	je esquina_SI
+	jp verificacion_A
+
+comparacion8:
+
 	cmp qword [x2],0x33
-	je Llamado_1
+	je esquina_SD
 	cmp qword [x2],0x34
-	je Llamado_1
+	je salir
 	cmp qword [x2],0x35
-	je Llamado_1
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
+	je esquina_SI
+	jp verificacion_A
+	
 
+comparacion9:
 
-comparacion_7:
+	cmp qword [x2],0x36
+	je esquina_SD
+	cmp qword [x2],0x37
+	je salir
+	cmp qword [x2],0x38	
+	je esquina_SI
+	jp verificacion_A
+
+comparacion10:
+
+	cmp qword [x2],0x39
+	je esquina_SD
+	jp verificacion_A
+
+comparacion11:
+
 	cmp qword [x2],0x30
-	je Llamado_2
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
-
-
-comparacion_8:
-	cmp qword [x2],0x35
-	je Llamado_3
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
-
-
-comparacion_9:
-	cmp qword [x2],0x30
-	je Llamado_4
+	je salir
 	cmp qword [x2],0x31
-	je Llamado_4
-	cmp qword [x2],0x32
-	je Llamado_4
-	cmp qword [x2],0x33
-	je Llamado_4
-	cmp qword [x2],0x34
-	je Llamado_4
-	cmp qword [x2],0x35
-	je Llamado_4
-	;Si no hay ninguna condicion que se cumpla que no haga nada 
-	limpiar
+	je esquina_SI
+	jp verificacion_A
+	
 
+comparacion12:
+
+	cmp qword [x2],0x32
+	je esquina_SD
+	cmp qword [x2],0x33
+	je salir
+	cmp qword [x2],0x34
+	je esquina_SI
+	jp verificacion_A
+
+comparacion13:
+
+	cmp qword [x2],0x35
+	je esquina_SD
+	cmp qword [x2],0x36
+	je salir
+	cmp qword [x2],0x37
+	je esquina_SI
+	jp verificacion_A
+
+comparacion14:
+
+	cmp qword [x2],0x38
+	je esquina_SD
+	cmp qword [x2],0x39
+	je salir
+	jp verificacion_A
+
+;--------------------------------------------------------Final Comparaciones Fila 2,5,8-----------------------------------------------------------------
+
+
+;--------------------------------------------------------Inicio Comparaciones Fila 3,6,9----------------------------------------------------------------
+comparacion15:
+
+	cmp qword [x2],0x32
+	je verificacion_I
+	jp salir
+
+comparacion16:
+
+	cmp qword [x2],0x33
+	je verificacion_D
+	cmp qword [x2],0x35
+	je verificacion_I
+	jp salir
+
+comparacion17:
+
+	cmp qword [x2],0x36
+	je verificacion_D
+	cmp qword [x2],0x38
+	je verificacion_I
+	jp salir
+
+comparacion18:
+
+	cmp qword [x2],0x39
+	je verificacion_D
+	jp salir
+
+comparacion19:
+
+	cmp qword [x2],0x31
+	je verificacion_I
+	jp salir
+
+comparacion20:
+
+	cmp qword [x2],0x32
+	je verificacion_D
+	cmp qword [x2],0x34
+	je verificacion_I
+	jp salir
+
+comparacion21:
+
+	cmp qword [x2],0x35
+	je verificacion_D
+	cmp qword [x2],0x37
+	je verificacion_I
+	jp salir
+
+comparacion22:
+
+	cmp qword [x2],0x38
+	je verificacion_D
+	jp salir
+
+;--------------------------------------------------------Final Comparaciones Fila 3,6,9-----------------------------------------------------------------
+
+
+;--------------------------------------------------------Inicio Comparaciones Fila 4,7,10---------------------------------------------------------------
+
+comparacion23:
+
+	cmp qword [x2],0x30
+	je salir
+	cmp qword [x2],0x31
+	je salir
+	cmp qword [x2],0x32
+	je esquina_II
+	jp verificacion_B
+
+comparacion24:
+
+	cmp qword [x2],0x33
+	je esquina_ID
+	cmp qword [x2],0x34
+	je salir
+	cmp qword [x2],0x35
+	je esquina_II
+	jp verificacion_B
+
+comparacion25:
+
+	cmp qword [x2],0x36
+	je esquina_ID
+	cmp qword [x2],0x37
+	je salir
+	cmp qword [x2],0x38	
+	je esquina_II
+	jp verificacion_B
+
+comparacion26:
+
+	cmp qword [x2],0x39
+	je esquina_ID
+	jp verificacion_B
+
+comparacion27:
+
+	cmp qword [x2],0x30
+	je salir
+	cmp qword [x2],0x31
+	je esquina_II
+	jp verificacion_B
+
+comparacion28:
+
+	cmp qword [x2],0x32
+	je esquina_ID
+	cmp qword [x2],0x33
+	je salir
+	cmp qword [x2],0x34
+	je esquina_II
+	jp verificacion_B
+
+comparacion29:
+
+	cmp qword [x2],0x35
+	je esquina_ID
+	cmp qword [x2],0x36
+	je salir
+	cmp qword [x2],0x37
+	je esquina_II
+	jp verificacion_B
+
+comparacion30:
+
+	cmp qword [x2],0x38
+	je esquina_ID
+	cmp qword [x2],0x39
+	je salir
+	jp verificacion_B
+
+;--------------------------------------------------------Final Comparaciones Fila 4,7,10-----------------------------------------------------------------
 
 Llamado_2:
    escribe msg19,len19
@@ -225,7 +451,19 @@ Llamado_4:
 Llamado_1:
     escribe msg22,len22
 
+esquina:
+verificacion:
+salir:
+	limpiar
+
+
+	
 
 
 
-limpiar
+
+
+
+
+    
+
