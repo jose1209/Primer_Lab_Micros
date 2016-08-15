@@ -15,6 +15,9 @@ timeval:
 
 p1 dq 0       ;plataforma 1 izquierda, 
 p2 dq 0		  ;plataforma 2 derecha
+p3 dq 0
+p4 dq 0
+
 tecla_derecha dq 0
 tecla_izquierda dq 0
 
@@ -27,6 +30,7 @@ len3 equ $-barra
 cursor db  0x1b,"[?25l"
 len4 equ $-cursor
 
+?25l3
 
 tecla dq 0
 
@@ -204,8 +208,11 @@ escribe cursor,len4
 ;call leer_tecla
 call canonical_off
 call echo_off
-mov qword [p1], 0x36;p1
-mov qword [p2], 0x32;p2
+mov qword [p1], 0x34;p1
+mov qword [p2], 0x30;p
+mov qword [p3], 0x34;p1
+mov qword [p4], 0x37;p
+
 mov qword [tecla_derecha], 0x00
 mov qword [tecla_izquierda],0x00
 mov qword [tecla],0x00
@@ -372,19 +379,35 @@ cmp qword [p2], r13
 je  plataforma_suma_decena
 mov r13,0x01
 add qword [p2], r13
-call barra_cambio
-jmp inicio
+;call barra_cambio
+;jmp inicio
+jmp suma_unidad
 
 plataforma_suma_decena:
 mov r13,0x09
 mov r10,0x01
 add qword [p1], r10
 sub qword [p2], r13
+;call barra_cambio
+;jmp inicio
+jmp suma_unidad
 
+suma_unidad:  ;unidad borde derecho
+mov r13, 0x39
+cmp qword [p4], r13
+je  suma_decena
+mov r13,0x01
+add qword [p4], r13
 call barra_cambio
-
 jmp inicio
 
+suma_decena:			;unidad borde izquierdo
+mov r13,0x09
+mov r10,0x01
+add qword [p3], r10
+sub qword [p4], r13
+call barra_cambio
+jmp inicio
 ;_____________________________________________________________________________
 
 plataforma_izquierda:
@@ -396,7 +419,7 @@ je plataforma_limite_izquierdo
 jmp plataforma_resta_unidad
 
 plataforma_limite_izquierdo:
-mov r13, 0x30
+mov r13, 0x32
 cmp qword [p2], r13
 je inicio
 jmp plataforma_resta_unidad
@@ -408,17 +431,34 @@ cmp qword [p2], r13
 je  plataforma_resta_decena
 mov r13,0x01
 sub qword [p2], r13
-call barra_cambio
-jmp inicio
+;call barra_cambio
+;jmp inicio
+jmp resta_unidad
 
 plataforma_resta_decena:
 mov r13,0x09
 mov r10,0x01
 sub qword [p1], r10
 add qword [p2], r13
+;call barra_cambio
+;jmp inicio 
+jmp resta_unidad
 
+resta_unidad:
+mov r13, 0x30
+cmp qword [p4], r13
+je  resta_decena
+mov r13,0x01
+sub qword [p4], r13
 call barra_cambio
+jmp inicio
 
+resta_decena:
+mov r13,0x09
+mov r10,0x01
+sub qword [p3], r10
+add qword [p4], r13
+call barra_cambio
 jmp inicio 
 
 ;---------------------------limpia registros----------------------------------
