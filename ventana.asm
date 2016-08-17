@@ -59,9 +59,19 @@ segment .data
 	len14 equ $-msg14
 
 
+;---------------------------------------Pantalla perdio---------------------------------------------------------------------	
+
+	msg15 db 0x1b,"[5;5f",0x1b,"[49;37m","Has perdido",0xA,0x1b,"[49;39m" ; final
+	len15 equ $-msg15
+
+;---------------------------------------Pantalla gano---------------------------------------------------------------------	
+
+	msg16 db 0x1b,"[5;5f",0x1b,"[49;37m","Has ganado",0xA,0x1b,"[49;39m" ; final
+	len16 equ $-msg16
+
 segment .bss
 	res resb 2
-	num resb 20
+	num resb 20 ;nombre
 
 segment .text
 
@@ -78,7 +88,25 @@ limpiapantalla:
 	mov rcx, escSeq
 	mov rdx, escLen
 	int 80h
-	jmp final
+	jmp gano
+
+final:
+	escribe msg2, len2		; techo
+	escribe msg3, len3		; piso
+	escribe msg14, len14		; final
+	escribe msg7, len7		; integrantes
+	escribe msg8, len8		; 1
+	escribe msg9, len9		; 2
+	escribe msg10, len10		; 3
+	escribe msg11, len11		; 4
+	escribe msg12, len12		; 5
+	escribe msg13, len13		; grupo
+
+perdio:
+	escribe msg2, len2		; techo
+	escribe msg3, len3		; piso
+	escribe msg16, len16		; gano
+	escribe num, 20
 	
 
 global _start
@@ -99,17 +127,14 @@ _start:
 	call limpiapantalla
 	;escribe num, 20
 
-final:
+
+
+
+gano:
 	escribe msg2, len2		; techo
 	escribe msg3, len3		; piso
-	escribe msg14, len14		; final
-	escribe msg7, len7		; integrantes
-	escribe msg8, len8		; 1
-	escribe msg9, len9		; 2
-	escribe msg10, len10		; 3
-	escribe msg11, len11		; 4
-	escribe msg12, len12		; 5
-	escribe msg13, len13		; grupo
+	escribe msg15, len15		; perdio
+	escribe num, 20
 
 
 salir:
