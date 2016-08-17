@@ -13,26 +13,25 @@ timeval:
     tv_usec dd 0
 
 
-p1 dq 0       ;plataforma 1 izquierda, 
-p2 dq 0		  ;plataforma 2 derecha
-p3 dq 0
-p4 dq 0
+p1 dq 0		;variable plataforma izquierda decena 
+p2 dq 0		;variable plataforma izquierda unidad
+p3 dq 0		;variable plataforma derecha decena
+p4 dq 0		;variable plataforma derecha unidad
 
-tecla_derecha dq 0
-tecla_izquierda dq 0
+tecla_derecha dq 0       ;contador tecla derecha 
+tecla_izquierda dq 0	 ;contador tecla izquierda
+;variables para almacenar cuantas veces se mueve la plataforma
 
-borra db 0x1b,"[2J"
-len2 equ $-borra
+borra db 0x1b,"[2J"		;escape code para borrar pantalla
+len2 equ $-borra			
 
-barra db  0x1b,"[21;40f","********"
+barra db  0x1b,"[21;40f","********"		;variable de la plataforma a imprimir
 len3 equ $-barra
 
-cursor db  0x1b,"[?25l"
+cursor db  0x1b,"[?25l"		;escape code para esconder el cursor
 len4 equ $-cursor
 
-?25l3
-
-tecla dq 0
+tecla dq 0	;variable para recibir datos de teclado
 
 variable: db''													;Almacenamiento de la tecla capturada
 
@@ -197,21 +196,19 @@ write_stdin_termios:
         ;Final de la funcion
 ;###################################################
 
-
-
 section .text
 global _start
 
 ;---------------------------Principal-----------------------------------------
 _start:
-escribe cursor,len4
-;call leer_tecla
-call canonical_off
-call echo_off
-mov qword [p1], 0x34;p1
-mov qword [p2], 0x30;p
-mov qword [p3], 0x34;p1
-mov qword [p4], 0x37;p
+
+escribe cursor,len4	;se esconde el cursor	; 
+call canonical_off  ;se llama a la funcion para apagar el modo canonico
+call echo_off; se apaga el echo
+mov qword [p1], 0x34	 
+mov qword [p2], 0x30
+mov qword [p3], 0x34
+mov qword [p4], 0x37
 
 mov qword [tecla_derecha], 0x00
 mov qword [tecla_izquierda],0x00
