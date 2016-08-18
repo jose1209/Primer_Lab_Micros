@@ -9,8 +9,8 @@ int 0x80
 segment .data
 
 ;--------------------------------Limpiar Pantalla --------------------------------------------------------------------------------
-	escSeq db 27,"[2J"
-	escLen equ 8 
+	borra db 27,"[2J"
+	len17 equ $-borra
 
 ;--------------------------------Pantalla de inicio--------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ segment .data
 
 ;---------------------------------------Pantalla perdio---------------------------------------------------------------------	
 
-	msg15 db 0x1b,"[5;5f",0x1b,"[49;37m","Has perdido",0xA,0x1b,"[49;39m" ; final
+	msg15 db 0x1b,"[5;5f",0x1b,"[49;37m","Juego finalizado. Mejor suerte la proxima vez",0xA,0x1b,"[49;39m" ; final
 	len15 equ $-msg15
 
 ;---------------------------------------Pantalla gano---------------------------------------------------------------------	
@@ -83,12 +83,12 @@ leetecla:
 	ret
 
 limpiapantalla:
-	mov rax, 4
-	mov rbx, 1
-	mov rcx, escSeq
-	mov rdx, escLen
+	mov eax, 4
+	mov ebx, 1
+	mov ecx, borra
+	mov edx, len17
 	int 80h
-	jmp gano
+	ret
 
 final:
 	escribe msg2, len2		; techo
@@ -101,13 +101,27 @@ final:
 	escribe msg11, len11		; 4
 	escribe msg12, len12		; 5
 	escribe msg13, len13		; grupo
+	ret
 
-perdio:
+gano:
 	escribe msg2, len2		; techo
 	escribe msg3, len3		; piso
 	escribe msg16, len16		; gano
 	escribe num, 20
-	
+	ret
+
+perdio:
+	escribe msg2, len2		; techo
+	escribe msg3, len3		; piso
+	escribe msg15, len15		; perdio
+	escribe num, 20	
+	ret
+
+pierdevida:
+	escribe msg2, len2		; techo
+	escribe msg3, len3		; piso
+	ret
+
 
 global _start
 
@@ -125,16 +139,8 @@ _start:
 	int 0x80
 
 	call limpiapantalla
-	;escribe num, 20
+	call perdio
 
-
-
-
-gano:
-	escribe msg2, len2		; techo
-	escribe msg3, len3		; piso
-	escribe msg15, len15		; perdio
-	escribe num, 20
 
 
 salir:
