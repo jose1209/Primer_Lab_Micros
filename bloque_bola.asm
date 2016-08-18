@@ -153,6 +153,9 @@ b18 dq 0
 	bola1 db 0x1b,"[00;00f","*"
 	len41 equ $-bola1
 
+	msg54 db 0x1b,"ujgkukkukuuylk"
+	len54 equ $-msg54
+
 section .text
 global _start
 
@@ -1130,9 +1133,9 @@ cmp qword [y1],r13; pregunto si estoy en una esquina , 0.0
 je rebotar_RD; si estoy en esos ptos me devuelvo en la misma direccion que venia, me voy hacia arriba derecha
 call resta4
 mov qword [y2], 0x39 ; x1
-call verificacion_bloques
-call posicion_cambio
 ;call verificacion_bloques
+call posicion_cambio
+call verificacion_bloques
 jmp direccion
 
 h1:; si x2 es cero brinco a h1 para decrementar la decena y poner a x2 en 9
@@ -1141,9 +1144,9 @@ cmp qword [x1],r13; pregunto si estoy en una esquina , 0.0, 19
 je rebotar_RU; si estoy en esos ptos me devuelvo en la misma direccion que venia, me voy hacia arriba derecha
 call resta2
 mov qword [x2], 0x39 ; x1
-call verificacion_bloques
-call posicion_cambio
 ;call verificacion_bloques
+call posicion_cambio
+call verificacion_bloques
 jmp direccion
 
 h2:
@@ -1152,9 +1155,9 @@ cmp qword [y1],r13
 je rebotar_LU
 call suma4
 mov qword [y2], 0x30 ; x1
-call verificacion_bloques
-call posicion_cambio
 ;call verificacion_bloques
+call posicion_cambio
+call verificacion_bloques
 jmp direccion
 
 h3:
@@ -1163,9 +1166,9 @@ cmp qword [x1],r13
 je rebotar_LD
 call suma2; caso en que no se esta en el borde
 mov qword [x2], 0x30 ; x2 lo pone en cero
-call verificacion_bloques
-call posicion_cambio
 ;call verificacion_bloques
+call posicion_cambio
+call verificacion_bloques
 jmp direccion
 
 ;-----------------------------------------------------------------------------
@@ -2476,125 +2479,122 @@ borrarb17A:
 borrarb18A:
 
 	escribe msg40,len40
-	mov qword [b18], r12
+	mov qword [b18], 0x31
 	jmp R_bloque_Arriba
 
 borrarb1B:
-	mov r12, 0x31
 	escribe msg23,len23
-	mov qword [b1], r12
+	mov qword [b1], 0x31
 	jmp R_bloque_Abajo
 
 
 borrarb2B:
-	mov r12, 0x31
 	escribe msg24,len24
-	mov qword [b2], r12
+	mov qword [b2], 0x31
 	jmp R_bloque_Abajo
 
 borrarb3B:
-	mov r12, 0x31
+
 	escribe msg25,len25
-	mov qword [b3], r12
+	mov qword [b3], 0x31
 	jmp R_bloque_Abajo
 
 borrarb4B:
-	mov r12, 0x31
+
 	escribe msg26,len26
-	mov qword [b4], r12
+	mov qword [b4], 0x31
 	jmp R_bloque_Abajo
 
 borrarb5B:
-	mov r12, 0x31
+
 	escribe msg27,len27
-	mov qword [b5], r12
+	mov qword [b5], 0x31
 	jmp R_bloque_Abajo
 
 borrarb6B:
-	mov r12, 0x31
+
 	escribe msg28,len28
-	mov qword [b6], r12
+	mov qword [b6], 0x31
 	jmp R_bloque_Abajo
 
 borrarb7B:
-	mov r12, 0x31
+
 	escribe msg29,len29
-	mov qword [b7], r12
+	mov qword [b7], 0x31
 	jmp R_bloque_Abajo
 
 
 borrarb8B:
-	mov r12, 0x31
+
 	escribe msg30,len30
-	mov qword [b8], r12
+	mov qword [b8], 0x31
 	jmp R_bloque_Abajo
 
 borrarb9B:
-	mov r12, 0x31
+
 	escribe msg31,len31
-	mov qword [b9], r12
+	mov qword [b9], 0x31
 	jmp R_bloque_Abajo
 
 borrarb10B:
-	mov r12, 0x31
+
 	escribe msg32,len32
-	mov qword [b10], r12
+	mov qword [b10], 0x31
 	jmp R_bloque_Abajo
 
 borrarb11B:
-	mov r12, 0x31
+
 	escribe msg33,len33
-	mov qword [b11], r12
+	mov qword [b11], 0x31
 	jmp R_bloque_Abajo
 
 borrarb12B:
-	mov r12, 0x31
+
 	escribe msg34,len34
-	mov qword [b12], r12
+	mov qword [b12], 0x31
 	jmp R_bloque_Abajo
 
 borrarb13B:
-	mov r12, 0x31
+
 	escribe msg35,len35
-	mov qword [b13], r12
+	mov qword [b13], 0x31
 	jmp R_bloque_Abajo
 
 borrarb14B:
-	mov r12, 0x31
+
 	escribe msg36,len36
-	mov r12, 0x31;izquierda arriba
-	mov qword [b14], r12
+	mov qword [b14], 0x31
 	jmp R_bloque_Abajo
 
 borrarb15B:
-	mov r12, 0x31
+
 	escribe msg37,len37
-	mov qword [b15], r12
+	mov qword [b15], 0x31
 	jmp R_bloque_Abajo
 
 borrarb16B:
-	mov r12, 0x31
+
 	escribe msg38,len38
-	mov qword [b16], r12
+	mov qword [b16], 0x31
 	jmp R_bloque_Abajo
 
 borrarb17B:
-	mov r12, 0x31
+
 	escribe msg39,len39
-	mov qword [b17], r12
+	mov qword [b17], 0x31
 	jmp R_bloque_Abajo
 
 borrarb18B:
-	mov r12, 0x31
+
 	escribe msg40,len40
-	mov qword [b18], r12
+	mov qword [b18], 0x31
 	jmp R_bloque_Abajo
 
 
 borrarb1I:
-	mov r12, 0x31
+
 	escribe msg23,len23
-	mov qword [b1], r12
+	mov qword [b1], 0x31
 	jmp R_bloque_I
 
 
@@ -3254,6 +3254,7 @@ rebote_esquina72:
 	
 borra_esquina1:
 	escribe msg23,len23
+	mov qword [b1],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3265,6 +3266,7 @@ borra_esquina1:
 borra_esquina2:
 
     escribe msg23,len23
+    mov qword [b1],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3276,6 +3278,7 @@ borra_esquina2:
 borra_esquina3:
 
 	escribe msg24,len24
+	mov qword [b2],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3287,6 +3290,7 @@ borra_esquina3:
 borra_esquina4:
 
     escribe msg24,len24
+    mov qword [b2],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3298,6 +3302,7 @@ borra_esquina4:
 borra_esquina5:
 
 	escribe msg25,len25
+	mov qword [b3],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3309,6 +3314,7 @@ borra_esquina5:
 borra_esquina6:
 
     escribe msg25,len25
+    mov qword [b3],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3320,6 +3326,7 @@ borra_esquina6:
 borra_esquina7:
 
 	escribe msg26,len26
+	mov qword [b4],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3331,6 +3338,7 @@ borra_esquina7:
 borra_esquina8:
 
     escribe msg26,len26
+    mov qword [b4],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3342,6 +3350,7 @@ borra_esquina8:
 borra_esquina9:
 
 	escribe msg27,len27
+	mov qword [b5],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3353,6 +3362,7 @@ borra_esquina9:
 borra_esquina10:
 
     escribe msg27,len27
+    mov qword [b5],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3363,6 +3373,7 @@ borra_esquina10:
 
 borra_esquina11:
 	escribe msg28,len28
+	mov qword [b6],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3374,6 +3385,7 @@ borra_esquina11:
 borra_esquina12:
 
     escribe msg28,len28
+    mov qword [b6],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3384,6 +3396,7 @@ borra_esquina12:
 
 borra_esquina13:
 	escribe msg29,len29
+	mov qword [b7],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3395,6 +3408,7 @@ borra_esquina13:
 borra_esquina14:
 
     escribe msg29,len29
+    mov qword [b7],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3406,6 +3420,7 @@ borra_esquina14:
 borra_esquina15:
 
 	escribe msg30,len30
+	mov qword [b8],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3417,6 +3432,7 @@ borra_esquina15:
 borra_esquina16:
 
     escribe msg30,len30
+    mov qword [b8],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3428,6 +3444,7 @@ borra_esquina16:
 borra_esquina17:
 
 	escribe msg31,len31
+	mov qword [b9],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3439,6 +3456,7 @@ borra_esquina17:
 borra_esquina18:
 
     escribe msg31,len31
+    mov qword [b9],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3450,6 +3468,7 @@ borra_esquina18:
 borra_esquina19:
 
 	escribe msg32,len32
+	mov qword [b10],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3461,6 +3480,7 @@ borra_esquina19:
 borra_esquina20:
 
     escribe msg32,len32
+    mov qword [b10],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3472,6 +3492,7 @@ borra_esquina20:
 borra_esquina21:
 
 	escribe msg33,len33
+	mov qword [b11],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3483,6 +3504,7 @@ borra_esquina21:
 borra_esquina22:
 
     escribe msg33,len33
+    mov qword [b11],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3494,6 +3516,7 @@ borra_esquina22:
 borra_esquina23:
 
 	escribe msg34,len34
+	mov qword [b12],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3505,6 +3528,7 @@ borra_esquina23:
 borra_esquina24:
 
     escribe msg34,len34
+    mov qword [b12],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3516,6 +3540,7 @@ borra_esquina24:
 borra_esquina25:
 
 	escribe msg35,len35
+	mov qword [b13],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3527,6 +3552,7 @@ borra_esquina25:
 borra_esquina26:
 
     escribe msg35,len35
+    mov qword [b13],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3538,6 +3564,7 @@ borra_esquina26:
 borra_esquina27:
 
 	escribe msg36,len36
+	mov qword [b14],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3549,6 +3576,7 @@ borra_esquina27:
 borra_esquina28:
 
     escribe msg36,len36
+    mov qword [b14],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3560,6 +3588,7 @@ borra_esquina28:
 borra_esquina29:
 
 	escribe msg37,len37
+	mov qword [b15],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3571,6 +3600,7 @@ borra_esquina29:
 borra_esquina30:
 
     escribe msg37,len37
+    mov qword [b15],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3582,6 +3612,7 @@ borra_esquina30:
 borra_esquina31:
 
 	escribe msg38,len38
+	mov qword [b16],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3593,6 +3624,7 @@ borra_esquina31:
 borra_esquina32:
 
     escribe msg38,len38
+    mov qword [b16],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3604,6 +3636,7 @@ borra_esquina32:
 borra_esquina33:
 
 	escribe msg39,len39
+	mov qword [b17],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3615,6 +3648,7 @@ borra_esquina33:
 borra_esquina34:
 
     escribe msg39,len39
+    mov qword [b17],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3626,6 +3660,7 @@ borra_esquina34:
 borra_esquina35:
 
 	escribe msg40,len40
+	mov qword [b18],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x13
@@ -3637,6 +3672,7 @@ borra_esquina35:
 borra_esquina36:
 
     escribe msg40,len40
+    mov qword [b18],0x31
 	cmp qword [d0], 0x14
 	je rebotar_RU
 	cmp qword [d0], 0x12
@@ -3647,6 +3683,7 @@ borra_esquina36:
 
 borra_esquina37:
 	escribe msg23,len23
+	mov qword [b1],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3657,7 +3694,8 @@ borra_esquina37:
 
 borra_esquina38:
 
-	escribe msg24,len24
+	escribe msg23,len23
+	mov qword [b1],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3669,6 +3707,7 @@ borra_esquina38:
 borra_esquina39:
 
 	escribe msg24,len24
+	mov qword [b2],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3680,6 +3719,7 @@ borra_esquina39:
 borra_esquina40:
 
 	escribe msg24,len24
+	mov qword [b2],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3691,6 +3731,7 @@ borra_esquina40:
 borra_esquina41:
 
 	escribe msg25,len25
+	mov qword [b3],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3702,6 +3743,7 @@ borra_esquina41:
 borra_esquina42:
 
 	escribe msg25,len25
+	mov qword [b3],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3713,6 +3755,7 @@ borra_esquina42:
 borra_esquina43:
 
 	escribe msg26,len26
+	mov qword [b4],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3724,6 +3767,7 @@ borra_esquina43:
 borra_esquina44:
 
 	escribe msg26,len26
+	mov qword [b4],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3735,6 +3779,7 @@ borra_esquina44:
 borra_esquina45:
 
 	escribe msg27,len27
+	mov qword [b5],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3746,6 +3791,7 @@ borra_esquina45:
 borra_esquina46:
 
 	escribe msg27,len27
+	mov qword [b5],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3757,6 +3803,7 @@ borra_esquina46:
 borra_esquina47:
 
 	escribe msg28,len28
+	mov qword [b6],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3768,6 +3815,7 @@ borra_esquina47:
 borra_esquina48:
 
 	escribe msg28,len28
+	mov qword [b6],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3779,6 +3827,7 @@ borra_esquina48:
 borra_esquina49:
 
 	escribe msg29,len29
+	mov qword [b7],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3790,6 +3839,7 @@ borra_esquina49:
 borra_esquina50:
 
 	escribe msg29,len29
+	mov qword [b7],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3801,6 +3851,7 @@ borra_esquina50:
 borra_esquina51:
 
 	escribe msg30,len30
+	mov qword [b8],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3812,6 +3863,7 @@ borra_esquina51:
 borra_esquina52:
 
 	escribe msg30,len30
+	mov qword [b8],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3823,6 +3875,7 @@ borra_esquina52:
 borra_esquina53:
 
 	escribe msg31,len31
+	mov qword [b9],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3834,6 +3887,7 @@ borra_esquina53:
 borra_esquina54:
 
 	escribe msg31,len31
+	mov qword [b9],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3845,6 +3899,7 @@ borra_esquina54:
 borra_esquina55:
 
 	escribe msg32,len32
+	mov qword [b10],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3856,6 +3911,7 @@ borra_esquina55:
 borra_esquina56:
 
 	escribe msg32,len32
+	mov qword [b10],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3867,6 +3923,7 @@ borra_esquina56:
 borra_esquina57:
 
 	escribe msg33,len33
+	mov qword [b11],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3878,6 +3935,7 @@ borra_esquina57:
 borra_esquina58:
 
 	escribe msg33,len33
+	mov qword [b11],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3889,6 +3947,7 @@ borra_esquina58:
 borra_esquina59:
 
 	escribe msg34,len34
+	mov qword [b12],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3900,6 +3959,7 @@ borra_esquina59:
 borra_esquina60:
 
 	escribe msg34,len34
+	mov qword [b12],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3911,6 +3971,7 @@ borra_esquina60:
 borra_esquina61:
 
 	escribe msg35,len35
+	mov qword [b13],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3922,10 +3983,13 @@ borra_esquina61:
 borra_esquina62:
 
 	escribe msg35,len35
+	mov qword [b13],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
+	escribe msg35,len35
 	cmp qword [d0], 0x12
 	je rebotar_LD
+	escribe msg35,len35
 	cmp qword [d0], 0x11
 	je rebotar_RD
 	jmp salir
@@ -3933,6 +3997,7 @@ borra_esquina62:
 borra_esquina63:
 
 	escribe msg36,len36
+	mov qword [b14],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3944,6 +4009,7 @@ borra_esquina63:
 borra_esquina64:
 
 	escribe msg36,len36
+	mov qword [b14],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3955,6 +4021,7 @@ borra_esquina64:
 borra_esquina65:
 
 	escribe msg37,len37
+	mov qword [b15],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3966,6 +4033,7 @@ borra_esquina65:
 borra_esquina66:
 
 	escribe msg37,len37
+	mov qword [b15],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3977,6 +4045,7 @@ borra_esquina66:
 borra_esquina67:
 
 	escribe msg38,len38
+	mov qword [b16],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3988,6 +4057,7 @@ borra_esquina67:
 borra_esquina68:
 
 	escribe msg38,len38
+	mov qword [b16],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -3999,6 +4069,7 @@ borra_esquina68:
 borra_esquina69:
 
 	escribe msg39,len39
+	mov qword [b17],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -4010,6 +4081,7 @@ borra_esquina69:
 borra_esquina70:
 
 	escribe msg39,len39
+	mov qword [b17],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -4021,6 +4093,7 @@ borra_esquina70:
 borra_esquina71:
 
 	escribe msg40,len40
+	mov qword [b18],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
@@ -4032,6 +4105,7 @@ borra_esquina71:
 borra_esquina72:
 
 	escribe msg40,len40
+	mov qword [b18],0x31
 	cmp qword [d0], 0x13
 	je rebotar_LU;movimiento
 	cmp qword [d0], 0x12
