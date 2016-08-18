@@ -2821,656 +2821,1226 @@ borrarb18D:
 
 rebote_esquina1:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b1],0x30
+	je borra_esquina1
 	jmp salir
 
 rebote_esquina2:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b1],0x30
+	je borra_esquina2
 	jmp salir
 rebote_esquina3:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b2],0x30
+	je borra_esquina3
 	jmp salir
 
 rebote_esquina4:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b2],0x30
+	je borra_esquina4
 	jmp salir
+
 rebote_esquina5:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b3],0x30
+	je borra_esquina5
 	jmp salir
+
 rebote_esquina6:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b3],0x30
+	je borra_esquina6
 	jmp salir
+
 rebote_esquina7:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b4],0x30
+	je borra_esquina7
 	jmp salir
+
 rebote_esquina8:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b4],0x30
+	je borra_esquina8
 	jmp salir
+
 rebote_esquina9:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b5],0x30
+	je borra_esquina9
 	jmp salir
+
 rebote_esquina10:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b5],0x30
+	je borra_esquina10
 	jmp salir
+
 rebote_esquina11:
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+
+	cmp qword [b6],0x30
+	je borra_esquina11
 	jmp salir
+
 rebote_esquina12:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b6],0x30
+	je borra_esquina12
 	jmp salir
+
 rebote_esquina13:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b7],0x30
+	je borra_esquina13
 	jmp salir
+
 rebote_esquina14:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b7],0x30
+	je borra_esquina14
 	jmp salir
+
 rebote_esquina15:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b8],0x30
+	je borra_esquina15
 	jmp salir
+
 rebote_esquina16:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b8],0x30
+	je borra_esquina16
 	jmp salir
+
 rebote_esquina17:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b9],0x30
+	je borra_esquina17
 	jmp salir
+
 rebote_esquina18:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b9],0x30
+	je borra_esquina18
 	jmp salir
+
 rebote_esquina19:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b10],0x30
+	je borra_esquina19
 	jmp salir
+
 rebote_esquina20:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b10],0x30
+	je borra_esquina20
 	jmp salir
+
 rebote_esquina21:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b11],0x30
+	je borra_esquina21
 	jmp salir
+
 rebote_esquina22:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b11],0x30
+	je borra_esquina22
 	jmp salir
+
 rebote_esquina23:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b12],0x30
+	je borra_esquina23
 	jmp salir
+
 rebote_esquina24:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b12],0x30
+	je borra_esquina24
 	jmp salir
+
 rebote_esquina25:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b13],0x30
+	je borra_esquina25
 	jmp salir
+
 rebote_esquina26:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b13],0x30
+	je borra_esquina26
 	jmp salir
+
 rebote_esquina27:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b14],0x30
+	je borra_esquina27
 	jmp salir
+
 rebote_esquina28:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b14],0x30
+	je borra_esquina28
 	jmp salir
+
 rebote_esquina29:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b15],0x30
+	je borra_esquina29
 	jmp salir
+
 rebote_esquina30:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b15],0x30
+	je borra_esquina30
 	jmp salir
+
 rebote_esquina31:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b16],0x30
+	je borra_esquina31
 	jmp salir
+
 rebote_esquina32:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b16],0x30
+	je borra_esquina32
 	jmp salir
+
 rebote_esquina33:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b17],0x30
+	je borra_esquina33
 	jmp salir
+
 rebote_esquina34:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b17],0x30
+	je borra_esquina34
 	jmp salir
+
 rebote_esquina35:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b18],0x30
+	je borra_esquina35
 	jmp salir
+
 rebote_esquina36:
 
-	cmp qword [d0], 0x14
-	je rebotar_RU
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b18],0x30
+	je borra_esquina36
 	jmp salir
+
 rebote_esquina37:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b1],0x30
+	je borra_esquina37
 	jmp salir
+
 rebote_esquina38:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b1],0x30
+	je borra_esquina38
 	jmp salir
+
 rebote_esquina39:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b2],0x30
+	je borra_esquina39
 	jmp salir
+
 rebote_esquina40:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b2],0x30
+	je borra_esquina40
 	jmp salir
+
 rebote_esquina41:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b3],0x30
+	je borra_esquina41
 	jmp salir
+
 rebote_esquina42:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b3],0x30
+	je borra_esquina42
 	jmp salir
+
 rebote_esquina43:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b4],0x30
+	je borra_esquina43
 	jmp salir
+
 rebote_esquina44:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b4],0x30
+	je borra_esquina44
 	jmp salir
+
 rebote_esquina45:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b5],0x30
+	je borra_esquina45
 	jmp salir
+
 rebote_esquina46:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b5],0x30
+	je borra_esquina46
 	jmp salir
+
 rebote_esquina47:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b6],0x30
+	je borra_esquina47
 	jmp salir
+
 rebote_esquina48:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b6],0x30
+	je borra_esquina48
 	jmp salir
+
 rebote_esquina49:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b7],0x30
+	je borra_esquina49
 	jmp salir
+
 rebote_esquina50:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b7],0x30
+	je borra_esquina50
 	jmp salir
+
 rebote_esquina51:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b8],0x30
+	je borra_esquina51
 	jmp salir
+
 rebote_esquina52:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b8],0x30
+	je borra_esquina52
 	jmp salir
+
 rebote_esquina53:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b9],0x30
+	je borra_esquina53
 	jmp salir
+
 rebote_esquina54:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b9],0x30
+	je borra_esquina54
 	jmp salir
+
 rebote_esquina55:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b10],0x30
+	je borra_esquina55
 	jmp salir
+
 rebote_esquina56:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b10],0x30
+	je borra_esquina56
 	jmp salir
+
 rebote_esquina57:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b11],0x30
+	je borra_esquina57
 	jmp salir
+
 rebote_esquina58:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b11],0x30
+	je borra_esquina58
 	jmp salir
+
 rebote_esquina59:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b12],0x30
+	je borra_esquina59
 	jmp salir
+
 rebote_esquina60:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b12],0x30
+	je borra_esquina60
 	jmp salir
+
 rebote_esquina61:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b13],0x30
+	je borra_esquina61
 	jmp salir
+
 rebote_esquina62:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b13],0x30
+	je borra_esquina62
 	jmp salir
+
 rebote_esquina63:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b14],0x30
+	je borra_esquina63
 	jmp salir
+
 rebote_esquina64:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b14],0x30
+	je borra_esquina64
 	jmp salir
+
 rebote_esquina65:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b15],0x30
+	je borra_esquina65
 	jmp salir
+
 rebote_esquina66:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b15],0x30
+	je borra_esquina66
 	jmp salir
+
 rebote_esquina67:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b16],0x30
+	je borra_esquina67
 	jmp salir
+
 rebote_esquina68:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b16],0x30
+	je borra_esquina68
 	jmp salir
+
 rebote_esquina69:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b17],0x30
+	je borra_esquina69
 	jmp salir
+
 rebote_esquina70:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b17],0x30
+	je borra_esquina70
 	jmp salir
+
 rebote_esquina71:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x14
-	je rebotar_RU
+	cmp qword [b18],0x30
+	je borra_esquina71
 	jmp salir
+
 rebote_esquina72:
 
-	cmp qword [d0], 0x13
-	je rebotar_LU;movimiento
-	cmp qword [d0], 0x12
-	je rebotar_LD
-	cmp qword [d0], 0x11
-	je rebotar_RD
+	cmp qword [b18],0x30
+	je borra_esquina72
 	jmp salir
 
 ;-------------------------------------------------------- Final Distintas ESquinas  ----------------------------------------------------------------
 	
+borra_esquina1:
+	escribe msg23,len23
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina2:
+
+    escribe msg23,len23
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina3:
+
+	escribe msg24,len24
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina4:
+
+    escribe msg24,len24
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina5:
+
+	escribe msg25,len25
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina6:
+
+    escribe msg25,len25
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina7:
+
+	escribe msg26,len26
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina8:
+
+    escribe msg26,len26
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina9:
+
+	escribe msg27,len27
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina10:
+
+    escribe msg27,len27
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina11:
+	escribe msg28,len28
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina12:
+
+    escribe msg28,len28
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina13:
+	escribe msg29,len29
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina14:
+
+    escribe msg29,len29
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina15:
+
+	escribe msg30,len30
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina16:
+
+    escribe msg30,len30
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina17:
+
+	escribe msg31,len31
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina18:
+
+    escribe msg31,len31
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina19:
+
+	escribe msg32,len32
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina20:
+
+    escribe msg32,len32
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina21:
+
+	escribe msg33,len33
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina22:
+
+    escribe msg33,len33
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina23:
+
+	escribe msg34,len34
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina24:
+
+    escribe msg34,len34
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina25:
+
+	escribe msg35,len35
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina26:
+
+    escribe msg35,len35
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina27:
+
+	escribe msg36,len36
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina28:
+
+    escribe msg36,len36
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina29:
+
+	escribe msg37,len37
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina30:
+
+    escribe msg37,len37
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina31:
+
+	escribe msg38,len38
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina32:
+
+    escribe msg38,len38
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina33:
+
+	escribe msg39,len39
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina34:
+
+    escribe msg39,len39
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina35:
+
+	escribe msg40,len40
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina36:
+
+    escribe msg40,len40
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina37:
+	escribe msg23,len23
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina38:
+
+	escribe msg24,len24
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina39:
+
+	escribe msg24,len24
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina40:
+
+	escribe msg24,len24
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina41:
+
+	escribe msg25,len25
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina42:
+
+	escribe msg25,len25
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina43:
+
+	escribe msg26,len26
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina44:
+
+	escribe msg26,len26
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina45:
+
+	escribe msg27,len27
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina46:
+
+	escribe msg27,len27
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina47:
+
+	escribe msg28,len28
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina48:
+
+	escribe msg28,len28
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina49:
+
+	escribe msg29,len29
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina50:
+
+	escribe msg29,len29
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina51:
+
+	escribe msg30,len30
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina52:
+
+	escribe msg30,len30
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina53:
+
+	escribe msg31,len31
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina54:
+
+	escribe msg31,len31
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina55:
+
+	escribe msg32,len32
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina56:
+
+	escribe msg32,len32
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina57:
+
+	escribe msg33,len33
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina58:
+
+	escribe msg33,len33
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina59:
+
+	escribe msg34,len34
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina60:
+
+	escribe msg34,len34
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina61:
+
+	escribe msg35,len35
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina62:
+
+	escribe msg35,len35
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina63:
+
+	escribe msg36,len36
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina64:
+
+	escribe msg36,len36
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina65:
+
+	escribe msg37,len37
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina66:
+
+	escribe msg37,len37
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina67:
+
+	escribe msg38,len38
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina68:
+
+	escribe msg38,len38
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina69:
+
+	escribe msg39,len39
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina70:
+
+	escribe msg39,len39
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+borra_esquina71:
+
+	escribe msg40,len40
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x14
+	je rebotar_RU
+	jmp salir
+
+borra_esquina72:
+
+	escribe msg40,len40
+	cmp qword [d0], 0x13
+	je rebotar_LU;movimiento
+	cmp qword [d0], 0x12
+	je rebotar_LD
+	cmp qword [d0], 0x11
+	je rebotar_RD
+	jmp salir
+
+
 
 salir:
 jmp direccion 
