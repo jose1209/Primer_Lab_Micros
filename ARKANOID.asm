@@ -17,7 +17,7 @@ x2 dq 0
 y1 dq 0
 y2 dq 0
 d0 dq 0
-v dq 0
+v dq 3
 b1 dq 0
 b2 dq 0
 b3 dq 0
@@ -48,7 +48,7 @@ tecla_izquierda dq 0	 ;contador tecla izquierda
 	borra db 0x1b,"[2J"
 	len42 equ $-borra
 
-barra db  0x1b,"[19;40f","********"		;variable de la plataforma a imprimir
+barra db  0x1b,"[19;40f","************"		;variable de la plataforma a imprimir
 	len43 equ $-barra
 
 tecla dq 0	;variable para recibir datos de teclado
@@ -398,8 +398,8 @@ mov qword [b17], 0x30
 mov qword [b18], 0x30
 mov qword [p1], 0x34	 
 mov qword [p2], 0x30
-mov qword [p3], 0x34
-mov qword [p4], 0x37
+mov qword [p3], 0x35
+mov qword [p4], 0x31
 
 mov qword [tecla_derecha], 0x00
 mov qword [tecla_izquierda],0x00
@@ -474,11 +474,11 @@ jmp contadores_tecla
 ;call delay
 contadores_tecla:
 
-mov r13,0x74
+mov r13,0x63
 mov r14,qword[tecla]
 cmp r14,r13
 je aumento_derecha
-mov r13,0x72
+mov r13,0x7A
 mov r14,qword[tecla]
 cmp r14,r13
 je aumento_izquierda
@@ -537,6 +537,14 @@ mov r8, 0x2a;*
 mov [barra + 0x0E], r8
 mov r8, 0x2a;*
 mov [barra + 0x0F], r8
+mov r8, 0x2a;*
+mov [barra + 0x10], r8
+mov r8, 0x2a;*
+mov [barra + 0x11], r8
+mov r8, 0x2a;*
+mov [barra + 0x12], r8
+mov r8, 0x2a;*
+mov [barra + 0x13], r8
 escribe barra, len43
 ;call delay
 ;call limpiar_pantalla
@@ -562,13 +570,13 @@ ret
 plataforma_derecha:
 mov r13,0x01
 sub qword[tecla_derecha],r13
-mov r13, 0x37
+mov r13, 0x36
 cmp qword [p1], r13
 je plataforma_limite_derecho
 jmp plataforma_suma_unidad
 
 plataforma_limite_derecho:
-mov r13, 0x32
+mov r13, 0x38
 cmp qword [p2], r13
 je inicio
 jmp plataforma_suma_unidad
@@ -1087,6 +1095,7 @@ ret
 ;---------------------------direccion-----------------------------------------
 direccion:
 call inicio
+
 mov r15, 0x11
 cmp qword [d0], r15 ; 
 je arriba_i
@@ -1125,7 +1134,7 @@ add ebx, $811C9DC5  ; prime 1
 imul ebx, $01000193  ; prime 2
 mov eax, ebx
 xor edx, edx
-div esi         ; make it from 0 to 9
+div esi         ; make it from 0 to 1
 mov edi,0
 cmp edx,edi
 jz iz
@@ -1360,7 +1369,7 @@ jmp buff_2;actualizo y
 cero2_:;si y2 es 9, esto es el piso o no
 mov r13, 0x31
 cmp qword [y1],r13;pregunto si estoy en el piso
-je rebotar_RU;preguntar si esta la barra acá
+je rebotar_barra;preguntar si esta la barra acá   (rebotar_RU)
 call suma4
 mov qword [y2], 0x30 ; x1
 ;call verificacion_bloques
@@ -1396,7 +1405,48 @@ mov r10,0x01
 add qword [y1], r10
 ret
 ;-----------------------------------------------------------------------------
+rebotar_barra:
+;preguntar si barra esta aca ?
 
+mov r12, 0x13;derecha abajo
+cmp qword [d0], r12 ; 
+je barra_lugar1;rebotar_RU
+
+mov r12, 0x14;izquierda abajo
+cmp qword [d0], r12 ; 
+je barra_lugar2;rebotar_LU
+
+jmp direccion
+
+
+barra_lugar1:
+mov r14,qword [x1]
+cmp qword [p1],r14
+jle decena_2
+jmp resta_vidas
+
+
+decena_2:
+mov r14,qword [x1]
+cmp qword [p3],r14
+jge rebotar_RU
+jmp resta_vidas
+
+
+
+barra_lugar2:
+mov r14,qword [x1]
+cmp qword [p1],r14
+jle decena_4
+jmp resta_vidas
+
+
+
+decena_4:
+mov r14,qword [x1]
+cmp qword [p3],r14
+jge rebotar_LU
+jmp resta_vidas
 
 
 
@@ -1435,7 +1485,7 @@ jmp buff_22
 cero22_:
 mov r13, 0x31
 cmp qword [y1],r13
-je rebotar_LU
+je rebotar_barra;rebotar_LU
 call suma4
 mov qword [y2], 0x30 ; x1
 ;call verificacion_bloques
@@ -1680,7 +1730,9 @@ sub qword [v],r9
 mov r9,0
 cmp qword [v], r9;
 je perdio_juego
-
+mov r13,0x00
+mov qword[tecla_derecha],r13
+mov qword[tecla_izquierda],r13
 jmp _start
 ;-----------------------------------------------------------------------------
 perdio_juego:
@@ -4566,7 +4618,7 @@ jmp direccion
 ;---------------------------retardo temporal----------------------------------
 delay:
 mov dword [tv_sec], 0
-mov dword [tv_usec], 99000000
+mov dword [tv_usec], 155555000
 mov eax, 162
 mov ebx, timeval
 mov ecx, 0
