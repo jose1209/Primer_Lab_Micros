@@ -6,6 +6,9 @@ mov edx, %2
 int 0x80
 %endmacro
 
+segment .bss
+	nom resb 20 ; nombre jugador
+
 section .data
 
 timeval:
@@ -52,6 +55,8 @@ barra db  0x1b,"[19;40f","************"		;variable de la plataforma a imprimir
 	len43 equ $-barra
 
 tecla dq 0	;variable para recibir datos de teclado
+x dq 0	; tecla x
+ent dq 0	; tecla enter
 
     msg1 db 0x1b, "[2;2f","************ ",0x1b,"[3;2f","*",0x1b,"[3;13f","*",0x1b,"[4;2f","************ ",0x0a
 	len1 equ $-msg1
@@ -171,8 +176,95 @@ tecla dq 0	;variable para recibir datos de teclado
 	len44 equ $-cursor
 
 
+;--------------------------------Pantalla de inicio--------------------------------------------------------------------------
+
+	msg45 db  0x1b,"[2;1f",0x1b,"[47;37m","--------------------------------------------------------------------------------",0xA,0x1b,"[49;39m"	; [2;1 = y,x  , techo
+	len45 equ $-msg45
+
+	msg46 db 0x1b,"[23;1f",0x1b,"[47;37m","--------------------------------------------------------------------------------",0xA,0x1b,"[49;39m" ; suelo
+	len46 equ $-msg46
+
+	msg47 db 0x1b,"[11;5f",0x1b,"[49;37m","Nombre del jugador: ",0xA,0x1b,"[49;39m" ; nombre del jugador
+	len47 equ $-msg47
+
+	msg48 db 0x1b,"[5;5f",0x1b,"[49;37m","EL-4313-Lab. Estructura de Microprocesadores	2S-2016",0xA,0x1b,"[49;39m" ; datos
+	len48 equ $-msg48
+
+	msg49 db 0x1b,"[8;5f",0x1b,"[49;37m","Bienvenidos a Micronoid",0xA,0x1b,"[49;39m" ; Bienvenida
+	len49 equ $-msg49
+
+;---------------------------------------Pantalla final---------------------------------------------------------------------	
+	
+	msg50 db 0x1b,"[5;5f",0x1b,"[49;37m","Gracias por jugar Micronoid",0xA,0x1b,"[49;39m" ; final
+	len50 equ $-msg50
+	
+	msg51 db 0x1b,"[10;5f",0x1b,"[49;37m","Integrantes:",0xA,0x1b,"[49;39m" ; integrantes
+	len51 equ $-msg51
+
+	msg52 db 0x1b,"[11;8f",0x1b,"[49;37m","Alejandro Soto Ramirez	201244738",0xA,0x1b,"[49;39m" ; 1
+	len52 equ $-msg52
+
+	msg53 db 0x1b,"[12;8f",0x1b,"[49;37m","Allan Carmona Cruz	2013012293",0xA,0x1b,"[49;39m" ; 2
+	len53 equ $-msg53
+
+	msg54 db 0x1b,"[13;8f",0x1b,"[49;37m","Jose Gabriel Carmona Rodriguez	201253578",0xA,0x1b,"[49;39m" ; 3
+	len54 equ $-msg54
+
+	msg55 db 0x1b,"[14;8f",0x1b,"[49;37m","Luis Alejandro Morales Pena    2013114453",0xA,0x1b,"[49;39m" ; 4
+	len55 equ $-msg55
+
+	msg56 db 0x1b,"[15;8f",0x1b,"[49;37m","Marcos Loria Zuniga	2013105520",0xA,0x1b,"[49;39m" ; 5
+	len56 equ $-msg56
+
+	msg57 db 0x1b,"[17;5f",0x1b,"[49;37m","Grupo 1",0xA,0x1b,"[49;39m" ; grupo
+	len57 equ $-msg57
+
+;---------------------------------------Pantalla perdio---------------------------------------------------------------------	
+
+	msg58 db 0x1b,"[5;5f",0x1b,"[49;37m","Juego finalizado. Mejor suerte la proxima vez",0xA,0x1b,"[49;39m" ; perdio
+	len58 equ $-msg58
+
+;---------------------------------------Pantalla gano---------------------------------------------------------------------	
+
+	msg59 db 0x1b,"[5;5f",0x1b,"[49;37m","Juego finalizado. Has ganado",0xA,0x1b,"[49;39m" ; gano
+	len59 equ $-msg59
+
+;---------------------------------------Pantalla pierde vida-----------------------------------------------------------------	
+	
+	msg60 db 0x1b,"[5;5f",0x1b,"[49;37m","Intento fallido - Pierde una vida",0xA,0x1b,"[49;39m" ; pierde vida
+	len60 equ $-msg60
+
+;---------------------------------------Pantalla presione X-----------------------------------------------------------------	
+	
+	msg61 db 0x1b,"[5;5f",0x1b,"[49;37m","Presione X para iniciar",0xA,0x1b,"[49;39m" ; presione x
+	len61 equ $-msg61
+
+	msg62 db 0x1b,"[8;5f",0x1b,"[49;37m","Presione enter ",0xA,0x1b,"[49;39m" ; enter
+	len62 equ $-msg62
 
 
+;---------------------------------------  Bordes  -----------------------------------------------------------------
+
+	msg63 db  0x1b,"[0;0f",0x1b,"[49;37m","_______________________________________________________________________________",0xA,0x1b,"[49;39m"	; [2;1 = y,x  , techo
+	len63 equ $-msg63
+
+	msg64 db  0x1b,"[19;0f",0x1b,"[49;37m","_______________________________________________________________________________",0xA,0x1b,"[49;39m"	; [2;1 = y,x  , techo
+	len64 equ $-msg64
+
+	msg65 db  0x1b,"[1;0f","|",0x1b,"[2;0f","|",0x1b,"[3;0f","|",0x1b,"[4;0f","|",0x1b,"[5;0f","|",0x1b,"[6;0f","|",0x1b,"[7;0f","|",0x1b,"[8;0f","|",0x1b,"[9;0f","|",0x1b,"[10;0f","|",0x1b,"[11;0f","|",0x1b,"[12;0f","|",0x1b,"[13;0f","|",0x1b,"[14;0f","|",0x1b,"[15;0f","|",0x1b,"[16;0f","|",0x1b,"[17;0f","|",0x1b,"[18;0f","|"	; lateral
+	len65 equ $-msg65
+
+	msg66 db  0x1b,"[1;79f","|",0x1b,"[2;79f","|",0x1b,"[3;79f","|",0x1b,"[4;79f","|",0x1b,"[5;79f","|",0x1b,"[6;79f","|",0x1b,"[7;79f","|",0x1b,"[8;79f","|",0x1b,"[9;79f","|",0x1b,"[10;79f","|",0x1b,"[11;79f","|",0x1b,"[12;79f","|",0x1b,"[13;79f","|",0x1b,"[14;79f","|",0x1b,"[15;79f","|",0x1b,"[16;79f","|",0x1b,"[17;79f","|",0x1b,"[18;79f","|"	; lateral
+	len66 equ $-msg66
+
+	msgv3 db 0x1b,"[20;60f","vidas=3"
+	lenv3 equ $-msgv3
+
+	msgv2 db 0x1b,"[20;60f","vidas=2"
+	lenv2 equ $-msgv2
+
+	msgv1 db 0x1b,"[20;60f","vidas=1"
+	lenv1 equ $-msgv1
 
 termios:        times 36 db 0									;Estructura de 36bytes que contiene el modo de operacion de la consola
 stdin:          	  equ 0												;Standard Input (se usa stdin en lugar de escribir manualmente los valores)
@@ -361,13 +453,211 @@ write_stdin_termios:
 ;###################################################
 
 section .text
+
 global _start
 
+	Datos:
+		escribe msg45, len45		; techo
+		escribe msg46, len46		; piso
+		escribe msg49, len49		; Bienvenida
+		escribe msg48, len48		; datos
+		escribe msg47, len47		; nombre jugador
 
+		mov eax, 3
+		mov ebx, 2
+		mov ecx, nom
+		mov edx, 20
+		int 0x80
 
+		ret
+
+	pressx:
+		call canonical_off
+		escribe msg61, len61		; pressx
+		mov eax, 3
+		mov ebx, 2
+		mov ecx, x
+		mov edx, 20
+		int 0x80
+
+		mov r13,0x78
+		mov r14,qword[x]
+		cmp r14,r13
+		je inicioprograma
+		jmp pressx
+
+	pierdevida:
+		call canonical_on
+		escribe msg60, len60	; pierde vida
+		escribe msg62, len62	; enter
+		mov eax, 3
+		mov ebx, 2
+		mov ecx, ent
+		mov edx, 20
+		int 0x80
+		jmp _start_1
+
+	pierde:
+		call canonical_on
+		escribe msg58, len58		; pierde
+		escribe msg62, len62	; enter
+		mov eax, 3
+		mov ebx, 2
+		mov ecx, ent
+		mov edx, 20
+		int 0x80
+		call limpiar_pantalla
+		jmp final2
+
+	gano:
+		call canonical_on
+		escribe msg59, len59		; gano
+		escribe msg62, len62	; enter
+		mov eax, 3
+		mov ebx, 2
+		mov ecx, ent
+		mov edx, 20
+		int 0x80
+		call limpiar_pantalla
+		jmp final2
+
+	final2:
+		;escribe msg45, len45		; techo
+		;escribe msg46, len46		; piso
+		call canonical_on
+		escribe msg50, len50		; final
+		escribe msg51, len51		; integrantes
+		escribe msg52, len52		; 1
+		escribe msg53, len53		; 2
+		escribe msg54, len54		; 3
+		escribe msg55, len55		; 4
+		escribe msg56, len56		; 5
+		escribe msg57, len57		; grupo
+
+		mov eax, 3
+		mov ebx, 2
+		mov ecx, ent
+		mov edx, 20
+		int 0x80
+
+		jmp final
+
+	compararbloques:
+		cmp qword [b1], 0x31
+		je revb2
+		ret
+
+	revb2:
+
+		cmp qword [b2], 0x31
+		je revb3
+		ret
+
+	revb3:
+
+		cmp qword [b3], 0x31
+		je revb4
+		ret
+
+	revb4:
+
+		cmp qword [b4], 0x31
+		je revb5
+		ret
+
+	revb5:
+
+		cmp qword [b5], 0x31
+		je revb6
+		ret
+
+	revb6:
+
+		cmp qword [b6], 0x31
+		je revb7
+		ret
+
+	revb7:
+
+		cmp qword [b7], 0x31
+		je revb8
+		ret
+
+	revb8:
+
+		cmp qword [b8], 0x31
+		je revb9
+		ret
+
+	revb9:
+
+		cmp qword [b9], 0x31
+		je revb10
+		ret
+
+	revb10:
+
+		cmp qword [b10], 0x31
+		je revb11
+		ret
+
+	revb11:
+
+		cmp qword [b11], 0x31
+		je revb12
+		ret
+
+	revb12:
+
+		cmp qword [b12], 0x31
+		je revb13
+		ret
+
+	revb13:
+
+		cmp qword [b13], 0x31
+		je revb14
+		ret
+
+	revb14:
+
+		cmp qword [b14], 0x31
+		je revb15
+		ret
+
+	revb15:
+
+		cmp qword [b15], 0x31
+		je revb16
+		ret
+
+	revb16:
+
+		cmp qword [b16], 0x31
+		je revb17
+		ret
+
+	revb17:
+
+		cmp qword [b17], 0x31
+		je revb18
+		ret
+
+	revb18:
+
+		cmp qword [b18], 0x31
+		je gano
+		ret
 
 ;---------------------------Principal-----------------------------------------
 _start:
+call limpiar_pantalla
+call Datos
+call limpiar_pantalla
+jmp _start_1
+
+
+_start_1:
 escribe cursor,len44	;se esconde el cursor	; 
 
 call canonical_off  ;se llama a la funcion para apagar el modo canonico
@@ -405,6 +695,11 @@ mov qword [tecla_derecha], 0x00
 mov qword [tecla_izquierda],0x00
 mov qword [tecla],0x00
 
+
+call limpiar_pantalla
+call pressx 
+inicioprograma:
+mov qword[x], 0
 call limpiar_pantalla
 call posicion_cambio
 call disparo_inicio
@@ -412,10 +707,26 @@ jmp final
 ;-----------------------------------------------------------------------------
 
 
+vidas:
+cmp qword[v],3
+je vida3
+cmp qword[v],2
+je vida2
+cmp qword[v],1
+je vida1
+ret
 
+vida3:
+escribe msgv3,lenv3
+ret
 
+vida2:
+escribe msgv2,lenv2
+ret
 
-
+vida1:
+escribe msgv1,lenv1
+ret
 
 ;---------------------------dibujar elemento----------------------------------
 posicion_cambio:
@@ -438,6 +749,12 @@ mov [bola1 + 0x07], r8
 mov r8, 0x2a;*
 mov [bola1 + 0x08], r8
 escribe bola1, len41
+escribe msg65, len65 ; lateral izq
+escribe msg66, len66 ; lateral der 
+escribe msg63, len63 ; borde superior
+escribe msg64, len64 ; borde inferior
+escribe nom, 20
+call vidas
 call inicio
 call delay
 call limpiar_pantalla
@@ -1095,6 +1412,7 @@ ret
 ;---------------------------direccion-----------------------------------------
 direccion:
 call inicio
+call compararbloques
 
 mov r15, 0x11
 cmp qword [d0], r15 ; 
@@ -1729,11 +2047,12 @@ mov r9,1
 sub qword [v],r9
 mov r9,0
 cmp qword [v], r9;
-je perdio_juego
+call limpiar_pantalla
+je pierde
 mov r13,0x00
 mov qword[tecla_derecha],r13
 mov qword[tecla_izquierda],r13
-jmp _start
+jmp pierdevida
 ;-----------------------------------------------------------------------------
 perdio_juego:
 jmp final 
